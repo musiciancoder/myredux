@@ -4,3 +4,11 @@ import { AGREGAR_PRODUCTO,
     AGREGAR_PRODUCTO_EXITO,
     AGREGAR_PRODUCTO_ERROR } from '../types';
 
+
+// Crear nuevos productos; esta funcion se ocupa en los componentes
+export  function  crearNuevoProductoAction() {
+    return()=>{
+        console.log('desde action')
+    }
+
+}
