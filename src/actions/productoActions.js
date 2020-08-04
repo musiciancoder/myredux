@@ -16,16 +16,13 @@ export function crearNuevoProductoAction(producto) { //Comparar esto con la fx d
         //esto esta en NuevoProducto.js     const agregarProducto = (producto) => dispatch(crearNuevoProductoAction(producto));
         dispatch(agregarProducto()); //cuando está cargando
         try { // insertar en la API
-           await clienteAxios.post('/productos', producto); //insertamos el payload
+           await clienteAxios.post('/hola', producto); //insertamos el payload
 
            //Si sale bien, que actualice el state
             dispatch(agregarProductoExito(producto)); //si el producto se agrega con éxito
 
        //si hay un error
         } catch (error) {
-            console.log(error.description);
-            console.log(error.filename);
-            console.log(error.lineNumber);
             dispatch(agregarProductoError(true)); //si hay un error al cargar el producto
         }
 

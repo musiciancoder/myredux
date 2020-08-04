@@ -29,6 +29,21 @@
       "nombre": "ahoraSi",
       "precio": 400,
       "id": 6
+    },
+    {
+      "nombre": "Rib Eye 800g",
+      "precio": 400,
+      "id": 7
+    },
+    {
+      "nombre": "Rib Eye 800g",
+      "precio": 500,
+      "id": 8
+    },
+    {
+      "nombre": "megadeth",
+      "precio": 400,
+      "id": 9
     }
   ]
 }
