@@ -14,7 +14,7 @@ const NuevoProductos = () => {
 
     const dispatch = useDispatch();
 
-    //la vista despacha la acción, al pasar la funcion definida en los actions comoparametro a dispatch
+    //la vista le envia la acción al Action/Dispatcher, al pasar la funcion definida en los actions comop arametro a dispatch
     //se ejecuta mas abajo al hacer clich en boton submit
     const agregarProducto = (producto) => dispatch(crearNuevoProductoAction(producto));
 

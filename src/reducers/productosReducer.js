@@ -26,6 +26,14 @@ export default function (state = initialState, action) {
                 loading: false,
                 productos: [...state.productos, action.payload] // este es el cambio de estado donde se agrega el producto, se puede ver en Diff -->Tree en React Developre Tools
             }
+        case AGREGAR_PRODUCTO_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload // este es el cambio de estado donde se agrega el error, se puede ver en Diff -->Tree en React Developre Tools
+            }
+
+
 
         default:
             return state; //hacia store
