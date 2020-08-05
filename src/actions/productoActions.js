@@ -70,16 +70,37 @@ const agregarProductoError = estado => ({ //retorna el Action, que siempre es un
         payload: estado
 });
 
+
+
 //Funcion que descarga los productos de la base de datos, llamada en la vista
 export function obtenerProductosAction() {
     return async  dispatch =>{
         dispatch(descargarProductos());
+
+        try {
+            const respuesta = await clienteAxios.get('/productos');
+            console.log(respuesta.data);
+            dispatch (descargarProductosExitosa(respuesta.data))
+        } catch (error) {
+            console.log(error);
+            dispatch(descargarProductosError()); //con JSONSERVER no pasar error como argumento!! con node.js sí pasarlo
+        }
     }
 }
 
 //cuando recien se carga la pagina, se pasa el payload de false a true
 const descargarProductos = () =>({
     type: COMENZAR_DESCARGA_PRODUCTOS,
+    payload: true
+})
+
+const descargarProductosExitosa = productos =>({
+    type: DESCARGA_PRODUCTOS_EXITO,
+    payload: productos
+})
+
+const descargarProductosError = () =>({
+    type: DESCARGA_PRODUCTOS_ERROR,
     payload: true
 })
 

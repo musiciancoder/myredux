@@ -1,16 +1,18 @@
 //cada reducer tiene su propio state
 
-import { AGREGAR_PRODUCTO,
- AGREGAR_PRODUCTO_EXITO,
- AGREGAR_PRODUCTO_ERROR,
- COMENZAR_DESCARGA_PRODUCTOS,
- DESCARGA_PRODUCTOS_EXITO,
- DESCARGA_PRODUCTOS_ERROR } from '../types';
+import {
+    AGREGAR_PRODUCTO,
+    AGREGAR_PRODUCTO_EXITO,
+    AGREGAR_PRODUCTO_ERROR,
+    COMENZAR_DESCARGA_PRODUCTOS,
+    DESCARGA_PRODUCTOS_EXITO,
+    DESCARGA_PRODUCTOS_ERROR
+} from '../types';
 
 //Estado inicial
-const initialState ={
+const initialState = {
     productos: [],
-    error:null, //puede ser false tambien
+    error: null, //puede ser false tambien
     loading: false
 }
 
@@ -30,14 +32,20 @@ export default function (state = initialState, action) {
                 loading: false,
                 productos: [...state.productos, action.payload] // este es el cambio de estado donde se agrega el producto, se puede ver en Diff -->Tree en React Developre Tools
             }
+        case DESCARGA_PRODUCTOS_ERROR:
         case AGREGAR_PRODUCTO_ERROR:
             return {
                 ...state,
                 loading: false,
                 error: action.payload // este es el cambio de estado donde se agrega el error, se puede ver en Diff -->Tree en React Developre Tools
             }
-
-
+        case DESCARGA_PRODUCTOS_EXITO:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                productos: action.payload //con esto se agregan los productos, se pueden ver como JSON con devtools
+            }
 
 
         default:
