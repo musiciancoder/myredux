@@ -1,4 +1,5 @@
 import React , {Fragment, useEffect} from 'react';
+import Producto from "./Producto";
 import {useSelector, useDispatch} from "react-redux";
 import {obtenerProductosAction} from "../actions/productoActions";
 
@@ -13,6 +14,9 @@ const Productos = () => {
         cargarProductos();
     },[]);
 
+    //obtener productos del state (sin esto solo se pueden ver los productos en devtools, pero no en la consola
+    const productos = useSelector(state=>state.productos.productos);
+    console.log(productos);
 
     return(
 
@@ -28,6 +32,14 @@ const Productos = () => {
         </thead>
         <tbody>
 
+        { productos.length === 0 ? 'No hay productos' : (
+            productos.map(producto => (
+                <Producto
+                    key={producto.id}
+                    producto={producto}
+                />
+            ))
+        ) }
         </tbody>
     </table>
 
