@@ -3,29 +3,52 @@
 import {
     AGREGAR_PRODUCTO,
     AGREGAR_PRODUCTO_EXITO,
-    AGREGAR_PRODUCTO_ERROR
+    AGREGAR_PRODUCTO_ERROR,
+    COMENZAR_DESCARGA_PRODUCTOS,
+    DESCARGA_PRODUCTOS_EXITO,
+    DESCARGA_PRODUCTOS_ERROR
 } from '../types';
 
 import clienteAxios from '../config/axios';
+import swal from 'sweetalert2';
 
 
-// Crear nuevos productos; esta funcion se ocupa en los componentes
+// Crear nuevos productos; esta funcion se ocupa en las vistas (NuevoProducto.ja)
 export function crearNuevoProductoAction(producto) { //Comparar esto con la fx definida en la vista (NuevoProducto.js)
     return async (dispatch) => {
         //  console.log(producto); //primero se prueba
         //esto esta en NuevoProducto.js     const agregarProducto = (producto) => dispatch(crearNuevoProductoAction(producto));
         dispatch(agregarProducto()); //cuando está cargando
         try { // insertar en la API
-           await clienteAxios.post('/hola', producto); //insertamos el payload
+           await clienteAxios.post('/productos', producto); //insertamos el payload
 
            //Si sale bien, que actualice el state
             dispatch(agregarProductoExito(producto)); //si el producto se agrega con éxito
 
+            //Alerta
+
+
        //si hay un error
         } catch (error) {
             dispatch(agregarProductoError(true)); //si hay un error al cargar el producto
+
+            //alerta de error
+            swal.fire(
+                'error',
+                'Hubo un error',
+                'error',
+
+            )
+
         }
 
+        //Alerta
+        swal.fire(
+            'Correcto',
+            'El producto se agregó correctamente',
+            'success',
+
+        )
     }
 
 }
@@ -45,7 +68,18 @@ const agregarProductoExito = producto => ({  //retorna el Action, que siempre es
 const agregarProductoError = estado => ({ //retorna el Action, que siempre es un objeto que contiene Type y Payload
         type: AGREGAR_PRODUCTO_ERROR,
         payload: estado
+});
+
+//Funcion que descarga los productos de la base de datos, llamada en la vista
+export function obtenerProductosAction() {
+    return async  dispatch =>{
+        dispatch(descargarProductos());
+    }
+}
+
+//cuando recien se carga la pagina, se pasa el payload de false a true
+const descargarProductos = () =>({
+    type: COMENZAR_DESCARGA_PRODUCTOS,
+    payload: true
 })
-
-
 

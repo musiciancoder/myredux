@@ -2,7 +2,10 @@
 
 import { AGREGAR_PRODUCTO,
  AGREGAR_PRODUCTO_EXITO,
- AGREGAR_PRODUCTO_ERROR } from '../types';
+ AGREGAR_PRODUCTO_ERROR,
+ COMENZAR_DESCARGA_PRODUCTOS,
+ DESCARGA_PRODUCTOS_EXITO,
+ DESCARGA_PRODUCTOS_ERROR } from '../types';
 
 //Estado inicial
 const initialState ={
@@ -15,6 +18,7 @@ const initialState ={
 
 export default function (state = initialState, action) {
     switch (action.type) { //
+        case COMENZAR_DESCARGA_PRODUCTOS:
         case AGREGAR_PRODUCTO: //cuando está cargando el cambio de estado
             return {
                 ...state,
@@ -32,6 +36,7 @@ export default function (state = initialState, action) {
                 loading: false,
                 error: action.payload // este es el cambio de estado donde se agrega el error, se puede ver en Diff -->Tree en React Developre Tools
             }
+
 
 
 

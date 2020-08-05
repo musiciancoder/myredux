@@ -12,7 +12,7 @@ const NuevoProductos = () => {
 
     //utilizar useDispatch y te crea la función
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // useDispatch() siempre permite crear cuna variable dispatch
 
     //Con useSelector leemos lo que tenemos en el state
     //Acceder al state del store
@@ -40,7 +40,14 @@ const NuevoProductos = () => {
             nombre,
             precio
         });
+
+        //redireccionar
+       // window.history.push('/');
+
     }
+
+
+
 
     return (
         <div className="row justify-content-center">

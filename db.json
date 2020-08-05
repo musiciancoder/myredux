@@ -44,6 +44,26 @@
       "nombre": "megadeth",
       "precio": 400,
       "id": 9
+    },
+    {
+      "nombre": "caquita",
+      "precio": 566,
+      "id": 10
+    },
+    {
+      "nombre": "fhfhf",
+      "precio": 577,
+      "id": 11
+    },
+    {
+      "nombre": "fhfhf",
+      "precio": 6777,
+      "id": 12
+    },
+    {
+      "nombre": "lulu",
+      "precio": 500,
+      "id": 13
     }
   ]
 }
