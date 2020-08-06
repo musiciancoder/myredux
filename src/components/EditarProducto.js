@@ -1,13 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {editarProductoAction} from "../actions/productoActions";
 
 const EditarProducto = () => {
 
+    //nuevo state de producto que se esta editando
+    const [producto, guardarProducto] = useState({
+        nombre:'',
+        precio: ''
+    })
+
     //producto a editar
-    const producto = useSelector(state => state.productos.productoeditar); //con esto va a estar disponible productoeditar
+    const productoeditar = useSelector(state => state.productos.productoeditar); //con esto va a estar disponible productoeditar
     //console.log(producto);
-    if(!producto) return null; //Si recarga la pagina en el formulario de editar no se mostrará nada
+    //if(!producto) return null; //Si recarga la pagina en el formulario de editar no se mostrará nada. No se usa con Usestate (video leyendo los nuevos valores)
+
+    //llenar el state automaticamente cuando cargue el formulario de edicion
+    useEffect(()=>{
+        guardarProducto(productoeditar); //con esto conseguimos q el nombre y precio del objeto a editar aparezcan en el state de "Components" en tools de chrome
+    },[productoeditar]); //La fx useEffect se ejecuta toda vez que hay un cambio en productoeditar
+
+    //Leer los datos del formulario (al escribir algo en el input, el state en react devtools debe cambiar en el componente EditarProducto
+    const onChangeFormulario = (e)=>{
+        guardarProducto({
+                ...producto,
+                [e.target.name]: e.target.value
+            })
+    }
+
     const {nombre, precio, id} = producto; //destructuring
 
     const submitEditarProducto = e  =>{
@@ -37,7 +57,8 @@ const EditarProducto = () => {
                                     placeholder="Nombre Producto"
                                     name="nombre"
                                     value={nombre} //con esto aparece el nombre del producto que estamos editando en el input
-                                    //          onChange={e => guardarNombre(e.target.value)}
+                                    //onChange={e => guardarNombre(e.target.value)}
+                                    onChange={onChangeFormulario}
                                 />
                             </div>
 
@@ -49,7 +70,8 @@ const EditarProducto = () => {
                                     placeholder="Precio Producto"
                                     name="precio"
                                     value={precio}
-                                    //        onChange={e =>  guardarPrecio( Number(e.target.value) )}
+                                   // onChange={e =>  guardarPrecio( Number(e.target.value) )}
+                                    onChange={onChangeFormulario}
                                 />
                             </div>
 
