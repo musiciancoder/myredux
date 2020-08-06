@@ -20,15 +20,12 @@ export function crearNuevoProductoAction(producto) { //Comparar esto con la fx d
         //esto esta en NuevoProducto.js     const agregarProducto = (producto) => dispatch(crearNuevoProductoAction(producto));
         dispatch(agregarProducto()); //cuando está cargando
         try { // insertar en la API
-           await clienteAxios.post('/productos', producto); //insertamos el payload
+            await clienteAxios.post('/productos', producto); //insertamos el payload
 
-           //Si sale bien, que actualice el state
+            //Si sale bien, que actualice el state
             dispatch(agregarProductoExito(producto)); //si el producto se agrega con éxito
 
-            //Alerta
-
-
-       //si hay un error
+            //si hay un error
         } catch (error) {
             dispatch(agregarProductoError(true)); //si hay un error al cargar el producto
 
@@ -37,20 +34,15 @@ export function crearNuevoProductoAction(producto) { //Comparar esto con la fx d
                 'error',
                 'Hubo un error',
                 'error',
-
             )
-
         }
-
         //Alerta
         swal.fire(
             'Correcto',
             'El producto se agregó correctamente',
             'success',
-
         )
     }
-
 }
 
 const agregarProducto = () => ({
@@ -66,21 +58,22 @@ const agregarProductoExito = producto => ({  //retorna el Action, que siempre es
 
 
 const agregarProductoError = estado => ({ //retorna el Action, que siempre es un objeto que contiene Type y Payload
-        type: AGREGAR_PRODUCTO_ERROR,
-        payload: estado
+    type: AGREGAR_PRODUCTO_ERROR,
+    payload: estado
 });
 
+//----------------------------------------------------------------------------
 
 
 //Funcion que descarga los productos de la base de datos, llamada en la vista
 export function obtenerProductosAction() {
-    return async  dispatch =>{
+    return async dispatch => {
         dispatch(descargarProductos());
 
         try {
-            const respuesta = await clienteAxios.get('/productosss');
-           // console.log(respuesta.data);
-            dispatch (descargarProductosExitosa(respuesta.data))
+            const respuesta = await clienteAxios.get('/productos');
+            // console.log(respuesta.data);
+            dispatch(descargarProductosExitosa(respuesta.data))
         } catch (error) {
             console.log(error);
             dispatch(descargarProductosError()); //con JSONSERVER no pasar error como argumento!! con node.js sí pasarlo
@@ -89,17 +82,17 @@ export function obtenerProductosAction() {
 }
 
 //cuando recien se carga la pagina, se pasa el payload de false a true
-const descargarProductos = () =>({
+const descargarProductos = () => ({
     type: COMENZAR_DESCARGA_PRODUCTOS,
     payload: true
 })
 
-const descargarProductosExitosa = productos =>({
+const descargarProductosExitosa = productos => ({
     type: DESCARGA_PRODUCTOS_EXITO,
     payload: productos
 })
 
-const descargarProductosError = () =>({
+const descargarProductosError = () => ({
     type: DESCARGA_PRODUCTOS_ERROR,
     payload: true
 })
