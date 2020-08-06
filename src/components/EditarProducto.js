@@ -1,10 +1,16 @@
-
-
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
 
 const EditarProducto = () => {
 
-    return(
+    //producto a editar
+    const producto = useSelector(state => state.productos.productoeditar); //con esto va a estar disponible productoeditar
+    //console.log(producto);
+    if(!producto) return null; //Si recarga la pagina en el formulario de editar no se mostrará nada
+    const {nombre, precio, id} = producto; //destructuring
+
+
+    return (
 
         <div className="row justify-content-center">
             <div className="col-md-8">
@@ -23,8 +29,8 @@ const EditarProducto = () => {
                                     type="text"
                                     className="form-control"
                                     placeholder="Nombre Producto"
-                                    //          name="nombre"
-                                    //         value={nombre}
+                                    name="nombre"
+                                    value={nombre} //con esto aparece el nombre del producto que estamos editando en el input
                                     //          onChange={e => guardarNombre(e.target.value)}
                                 />
                             </div>
@@ -35,8 +41,8 @@ const EditarProducto = () => {
                                     type="number"
                                     className="form-control"
                                     placeholder="Precio Producto"
-                                    //           name="precio"
-                                    //          value={precio}
+                                    name="precio"
+                                    value={precio}
                                     //        onChange={e =>  guardarPrecio( Number(e.target.value) )}
                                 />
                             </div>
@@ -44,7 +50,8 @@ const EditarProducto = () => {
                             <button
                                 type="submit"
                                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
-                            >Guardar Cambios</button>
+                            >Guardar Cambios
+                            </button>
                         </form>
 
                     </div>
@@ -57,4 +64,4 @@ const EditarProducto = () => {
 
 };
 
-export default EditarProducto ;
+export default EditarProducto;
