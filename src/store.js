@@ -14,4 +14,4 @@ const store = createStore(
     )
 );
 
-export default store;
+export default store; //hacia  App.js, es decir hacia la vista

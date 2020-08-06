@@ -9,7 +9,8 @@ import {
     DESCARGA_PRODUCTOS_ERROR,
     OBTENER_PRODUCTO_ELIMINAR,
     PRODUCTO_EDITADO_EXITO,
-    PRODUCTO_EDITADO_ERROR
+    PRODUCTO_EDITADO_ERROR,
+    OBTENER_PRODUCTO_EDITAR
 
 } from '../types';
 
@@ -18,7 +19,8 @@ const initialState = {
     productos: [],
     error: null, //puede ser false tambien
     loading: false,
-    productoeliminar:null
+    productoeliminar:null,
+    productoeditar: null
 }
 
 //recibe state desde el store y action desde dispatchers/actions
@@ -63,6 +65,11 @@ export default function (state = initialState, action) {
                 productos: state.productos.filter(producto=>producto.id !==
                     state.productoeliminar),
                 productoeliminar: null   //notar que sin esto el estado de productoeliminar en dev tools sigue tomando el id del objeto que eliminamos
+            }
+        case  OBTENER_PRODUCTO_EDITAR:
+            return {
+                ...state,
+                productoeditar: action.payload
             }
 
         default:

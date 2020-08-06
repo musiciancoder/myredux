@@ -9,7 +9,10 @@ import {
     DESCARGA_PRODUCTOS_ERROR,
     OBTENER_PRODUCTO_ELIMINAR,
     PRODUCTO_ELIMINADO_EXITO,
-    PRODUCTO_ELIMINADO_ERROR
+    PRODUCTO_ELIMINADO_ERROR,
+    OBTENER_PRODUCTO_EDITAR,
+    PRODUCTO_EDITADO_EXITO,
+    PRODUCTO_EDITADO_ERROR
 
 
 } from '../types';
@@ -142,4 +145,20 @@ const eliminarProductoExito =() =>({
 const eliminarProductoError =()=>({
     type: PRODUCTO_ELIMINADO_ERROR,
     payload:true
+})
+
+//-------------------Editar producto
+export function obtenerProductoEditar(producto){
+    return(dispatch)=>{
+        dispatch(obtenerProductoEditarAction(producto))
+
+       // NOTAR QUE EN ESTA PARTE NO HAY TRY CATCH PORQUE SOLO ESTÁ AGREGANDO AL STATE EL PRODUCTO A EDITAR AL HACER CLICK EN EDITAR (SE PUEDE VER CON DEV TOOLS)
+
+    }
+
+}
+
+const obtenerProductoEditarAction = producto =>({
+type: OBTENER_PRODUCTO_EDITAR,
+    payload: producto
 })
