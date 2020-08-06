@@ -15,7 +15,7 @@ import {
 } from '../types';
 
 import clienteAxios from '../config/axios';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 // Crear nuevos productos; esta funcion se ocupa en las vistas (NuevoProducto.ja)
@@ -35,14 +35,14 @@ export function crearNuevoProductoAction(producto) { //Comparar esto con la fx d
             dispatch(agregarProductoError(true)); //si hay un error al cargar el producto
 
             //alerta de error
-            swal.fire(
+            Swal.fire(
                 'error',
                 'Hubo un error',
                 'error',
             )
         }
         //Alerta
-        swal.fire(
+        Swal.fire(
             'Correcto',
             'El producto se agregó correctamente',
             'success',
@@ -111,10 +111,17 @@ export function borrarProductoAction(id) {
 
         try {
             await clienteAxios.delete(`/productos/${id}`);
-            dispatch (eliminarProductoExito());
-        }catch (error) {
+            dispatch( eliminarProductoExito() );
 
-
+            // Si se elimina, mostrar alerta
+            Swal.fire(
+                'Eliminado',
+                'El producto se eliminó correctamente',
+                'success'
+            )
+        } catch (error) {
+            console.log(error);
+            dispatch( eliminarProductoError() );
         }
 
 
