@@ -1,17 +1,19 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom"; //Link sirve solo para redireccionar
 import Swal from "sweetalert2";
 
 //Redux
 import {useDispatch} from "react-redux";
+
 import {borrarProductoAction} from "../actions/productoActions";
 
 
-const Producto = ({producto})=> {
+const Producto = ({producto}) => {
 
-    const {nombre,precio,id} = producto;
+    const {nombre, precio, id} = producto;
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); //habilitar dispatch
+    const history = useHistory(); //habilitar history para redireciion
 
     //Confirmar si desea eliminarlo (apretar boton eliminar
     const confirmarEliminarProducto = id => {
@@ -29,9 +31,14 @@ const Producto = ({producto})=> {
         }).then((result) => {
             if (result.value) {
                 // pasarlo al action
-                dispatch( borrarProductoAction(id) );
+                dispatch(borrarProductoAction(id));
             }
         });
+    }
+
+    //Al hacer click en boton "editar"; funcion q redirige en forma programada
+    const redireccionarEdicion = producto => {
+        history.push(`/productos/editar/${producto.id}`)
     }
 
     return (
@@ -39,18 +46,18 @@ const Producto = ({producto})=> {
             <td>{nombre}</td>
             <td><span className="font-weight-bold"> $ {precio} </span></td>
             <td className="acciones">
-                <Link to={`/productos/editar/${id}`} className="btn btn-primary" >Editar</Link>
-{/*                <button
+                <button
                     type="button"
-                  //  onClick={ () => redireccionarEdicion(producto) }
+                    onClick={() => redireccionarEdicion(producto)}
                     className="btn btn-primary mr-2">
                     Editar
-                </button>*/}
+                </button>
                 <button
                     type="button"
                     className="btn btn-danger"
-                  onClick={() => confirmarEliminarProducto(id)}
-                >Eliminar </button>
+                    onClick={() => confirmarEliminarProducto(id)}
+                >Eliminar
+                </button>
             </td>
         </tr>
 
