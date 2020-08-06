@@ -107,7 +107,18 @@ const descargarProductosError = () => ({
 export function borrarProductoAction(id) {
     return async (dispatch) => {
         dispatch(obtenerProductoEliminar(id));
-        console.log(id);
+        //console.log(id); Hasta esta parte probar primero con redux dev
+
+        try {
+            await clienteAxios.delete(`/productos/${id}`);
+            dispatch (eliminarProductoExito());
+        }catch (error) {
+
+
+        }
+
+
+
     }
 }
 
@@ -115,3 +126,13 @@ export function borrarProductoAction(id) {
     type:OBTENER_PRODUCTO_ELIMINAR,
     payload:id
 });
+
+const eliminarProductoExito =() =>({
+    type: PRODUCTO_ELIMINADO_EXITO
+
+})
+
+const eliminarProductoError =()=>({
+    type: PRODUCTO_ELIMINADO_ERROR,
+    payload:true
+})

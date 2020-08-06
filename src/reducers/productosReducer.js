@@ -39,6 +39,7 @@ export default function (state = initialState, action) {
             }
         case DESCARGA_PRODUCTOS_ERROR:
         case AGREGAR_PRODUCTO_ERROR:
+        case PRODUCTO_EDITADO_ERROR:
             return {
                 ...state,
                 loading: false,
@@ -56,7 +57,13 @@ export default function (state = initialState, action) {
                 ...state,
                 productoeliminar: action.payload
             }
-
+        case PRODUCTO_EDITADO_EXITO:
+            return {
+                ...state,
+                productos: state.productos.filter(producto=>producto.id !==
+                    state.productoeliminar),
+                productoeliminar: null   //notar que sin esto el estado de productoeliminar en dev tools sigue tomando el id del objeto que eliminamos
+            }
 
         default:
             return state; //hacia store

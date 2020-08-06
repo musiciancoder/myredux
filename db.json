@@ -1,11 +1,6 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
-    },
-    {
       "id": 2,
       "nombre": "Jugo de Naranja",
       "precio": "1"
@@ -24,11 +19,6 @@
       "nombre": "Jugo de Fresa",
       "precio": "200",
       "id": 5
-    },
-    {
-      "nombre": "ahoraSi",
-      "precio": 400,
-      "id": 6
     },
     {
       "nombre": "Rib Eye 800g",
