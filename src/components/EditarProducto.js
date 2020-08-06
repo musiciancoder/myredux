@@ -1,5 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import {editarProductoAction} from "../actions/productoActions";
 
 const EditarProducto = () => {
 
@@ -9,6 +10,11 @@ const EditarProducto = () => {
     if(!producto) return null; //Si recarga la pagina en el formulario de editar no se mostrará nada
     const {nombre, precio, id} = producto; //destructuring
 
+    const submitEditarProducto = e  =>{
+        e.preventDefault();
+
+        editarProductoAction();
+    }
 
     return (
 
@@ -21,7 +27,7 @@ const EditarProducto = () => {
                         </h2>
 
                         <form
-                            // onSubmit={submitNuevoProducto}
+                             onSubmit={submitEditarProducto}
                         >
                             <div className="form-group">
                                 <label>Nombre Producto</label>

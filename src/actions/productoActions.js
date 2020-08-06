@@ -12,7 +12,7 @@ import {
     PRODUCTO_ELIMINADO_ERROR,
     OBTENER_PRODUCTO_EDITAR,
     PRODUCTO_EDITADO_EXITO,
-    PRODUCTO_EDITADO_ERROR
+    PRODUCTO_EDITADO_ERROR, COMENZAR_EDICION_PRODUCTO
 
 
 } from '../types';
@@ -147,7 +147,7 @@ const eliminarProductoError =()=>({
     payload:true
 })
 
-//-------------------Editar producto
+//-------------------Pasar un producto al formulario de editar producto (cuando se hace click en "editar"
 export function obtenerProductoEditar(producto){
     return(dispatch)=>{
         dispatch(obtenerProductoEditarAction(producto))
@@ -161,4 +161,22 @@ export function obtenerProductoEditar(producto){
 const obtenerProductoEditarAction = producto =>({
 type: OBTENER_PRODUCTO_EDITAR,
     payload: producto
+})
+
+//Edita un registro en la api y en el state cuando se envía el formulario de edicion
+export function editarProductoAction(producto) {
+return async (dispatch)=>{
+    dispatch(editarProducto(producto));
+
+    try {
+        clienteAxios.put(`/productos/${producto.id}`, producto);
+        console.log(producto);
+    } catch (e) {
+    }
+}
+}
+
+const editarProducto = producto =>({
+    type: COMENZAR_EDICION_PRODUCTO,
+    payload:producto
 })
