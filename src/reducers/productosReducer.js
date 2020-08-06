@@ -6,14 +6,19 @@ import {
     AGREGAR_PRODUCTO_ERROR,
     COMENZAR_DESCARGA_PRODUCTOS,
     DESCARGA_PRODUCTOS_EXITO,
-    DESCARGA_PRODUCTOS_ERROR
+    DESCARGA_PRODUCTOS_ERROR,
+    OBTENER_PRODUCTO_ELIMINAR,
+    PRODUCTO_EDITADO_EXITO,
+    PRODUCTO_EDITADO_ERROR
+
 } from '../types';
 
 //Estado inicial
 const initialState = {
     productos: [],
     error: null, //puede ser false tambien
-    loading: false
+    loading: false,
+    productoeliminar:null
 }
 
 //recibe state desde el store y action desde dispatchers/actions
@@ -45,6 +50,11 @@ export default function (state = initialState, action) {
                 loading: false,
                 error: null,
                 productos: action.payload //con esto se agregan los productos, se pueden ver como JSON con devtools
+            }
+        case OBTENER_PRODUCTO_ELIMINAR:
+            return {
+                ...state,
+                productoeliminar: action.payload
             }
 
 
