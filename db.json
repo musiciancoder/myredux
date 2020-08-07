@@ -2,7 +2,7 @@
   "productos": [
     {
       "nombre": "Jugo de Fresa",
-      "precio": "204",
+      "precio": "206",
       "id": 5
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "nombre": "Rib Eye 800g",
-      "precio": 500,
+      "precio": "501",
       "id": 8
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "nombre": "fhfhf",
-      "precio": 577,
+      "precio": "588",
       "id": 11
     },
     {
@@ -44,6 +44,16 @@
       "nombre": "Limonada",
       "precio": 78,
       "id": 14
+    },
+    {
+      "nombre": "Papel higienico",
+      "precio": 530,
+      "id": 15
+    },
+    {
+      "nombre": "Revista",
+      "precio": 3000,
+      "id": 16
     }
   ]
 }

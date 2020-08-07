@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 
 //Actions de Redux
-import {crearNuevoProductoAction} from '../actions/productoActions'
+import {crearNuevoProductoAction} from '../actions/productoActions';
 import {mostrarAlerta, ocultarAlertaAction} from "../actions/alertaActions";
 
 const NuevoProductos = () => {
@@ -14,7 +15,7 @@ const NuevoProductos = () => {
     //utilizar useDispatch y te crea la función
 
     const dispatch = useDispatch(); // useDispatch() siempre permite crear cuna variable dispatch
-
+    const history = useHistory ();
     //Con useSelector leemos lo que tenemos en el state
     //Acceder al state del store
     const cargando = useSelector (state =>state.productos.loading ); //console.log(cargando);
@@ -52,7 +53,7 @@ const NuevoProductos = () => {
         });
 
         //redireccionar
-       // window.history.push('/');
+        history.push('/');
 
     }
 
