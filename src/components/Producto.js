@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useHistory} from "react-router-dom"; //Link sirve solo para redireccionar
+import {useHistory} from "react-router-dom"; //Link sirve solo para redireccionar
 import Swal from "sweetalert2";
 
 //Redux

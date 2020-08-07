@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 
 //Actions de Redux
 import {crearNuevoProductoAction} from '../actions/productoActions'
-import {mostrarAlerta} from "../actions/alertaActions";
+import {mostrarAlerta, ocultarAlertaAction} from "../actions/alertaActions";
 
 const NuevoProductos = () => {
 
@@ -39,11 +39,11 @@ const NuevoProductos = () => {
           }
 
           dispatch(mostrarAlerta(alerta)); //pasamos respuesta al action de alerta
-
             return;
         }
 
         //si no hay erorres
+        dispatch(ocultarAlertaAction()); //cambiamos la alerta a null
 
         //crear el nuevo producto
         agregarProducto({  //El producto es el payload

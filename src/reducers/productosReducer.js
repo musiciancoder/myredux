@@ -10,7 +10,7 @@ import {
     OBTENER_PRODUCTO_ELIMINAR,
     PRODUCTO_EDITADO_EXITO,
     PRODUCTO_EDITADO_ERROR,
-    OBTENER_PRODUCTO_EDITAR
+    OBTENER_PRODUCTO_EDITAR, PRODUCTO_ELIMINADO_ERROR
 
 } from '../types';
 
@@ -43,7 +43,7 @@ export default function (state = initialState, action) {
             }
         case DESCARGA_PRODUCTOS_ERROR:
         case AGREGAR_PRODUCTO_ERROR:
-        case PRODUCTO_EDITADO_ERROR:
+        case PRODUCTO_ELIMINADO_ERROR:
         case PRODUCTO_EDITADO_ERROR:
             return {
                 ...state,
