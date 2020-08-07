@@ -17,9 +17,10 @@ const NuevoProductos = () => {
 
     //Con useSelector leemos lo que tenemos en el state
     //Acceder al state del store
-    const cargando = useSelector (state =>state.productos.loading );
+    const cargando = useSelector (state =>state.productos.loading ); //console.log(cargando);
     const error = useSelector (state =>state.productos.error );
-    console.log(cargando);
+    const alerta= useSelector(state=>state.alerta.alerta);
+
 
     //la vista le envia la acción al Action/Dispatcher, al pasar la funcion definida en los actions comop arametro a dispatch
     //se ejecuta mas abajo al hacer clich en boton submit
@@ -66,6 +67,8 @@ const NuevoProductos = () => {
                         <h2 className="text-center mb-4 font-weight-bold">
                             Agregar Nuevo Producto
                         </h2>
+
+                        {alerta? <p className={alerta.classes}>{alerta.msg}</p>:null}
 
                         <form
                             onSubmit={submitNuevoProducto}
