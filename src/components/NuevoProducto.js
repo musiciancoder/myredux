@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 
 //Actions de Redux
 import {crearNuevoProductoAction} from '../actions/productoActions'
+import {mostrarAlerta} from "../actions/alertaActions";
 
 const NuevoProductos = () => {
 
@@ -24,12 +25,20 @@ const NuevoProductos = () => {
     //se ejecuta mas abajo al hacer clich en boton submit
     const agregarProducto = (producto) => dispatch(crearNuevoProductoAction(producto));
 
-    //cuando haga click en boton submit
+    //Cuando haga click en boton submit
     const submitNuevoProducto = e => {
         e.preventDefault();
 
         //validar formulario
         if (nombre.trim() === '' || precio <= 0) {
+
+          const alerta = {
+              msg: 'Ambos casos son obligatorios',
+              classes: 'alert alert-danger text-center text-upercase p3'
+          }
+
+          dispatch(mostrarAlerta(alerta)); //pasamos respuesta al action de alerta
+
             return;
         }
 
