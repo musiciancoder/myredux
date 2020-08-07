@@ -2,7 +2,7 @@
   "productos": [
     {
       "nombre": "Jugo de Fresa",
-      "precio": "200",
+      "precio": "204",
       "id": 5
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "nombre": "caquita",
-      "precio": 566,
+      "precio": "567",
       "id": 10
     },
     {

@@ -23,6 +23,8 @@ const initialState = {
     productoeditar: null
 }
 
+
+
 //recibe state desde el store y action desde dispatchers/actions
 
 export default function (state = initialState, action) {
@@ -41,6 +43,7 @@ export default function (state = initialState, action) {
             }
         case DESCARGA_PRODUCTOS_ERROR:
         case AGREGAR_PRODUCTO_ERROR:
+        case PRODUCTO_EDITADO_ERROR:
         case PRODUCTO_EDITADO_ERROR:
             return {
                 ...state,
@@ -70,6 +73,14 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 productoeditar: action.payload
+            }
+        case PRODUCTO_EDITADO_EXITO:
+            return {
+                ...state,
+                productoeditar: null,
+                productos: state.productos.map(
+                    producto => producto.id ===action.payload.id ? producto = action.payload : producto
+                )
             }
 
         default:

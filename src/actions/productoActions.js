@@ -166,17 +166,22 @@ type: OBTENER_PRODUCTO_EDITAR,
 //Edita un registro en la api y en el state cuando se envía el formulario de edicion
 export function editarProductoAction(producto) {
 return async (dispatch)=>{
-    dispatch(editarProducto(producto));
+    dispatch(editarProducto());
 
     try {
-        clienteAxios.put(`/productos/${producto.id}`, producto);
-        console.log(producto);
-    } catch (e) {
+       await clienteAxios.put(`/productos/${producto.id}`, producto);
+       // console.log(producto);
+        dispatch(editarProductoExito(producto))
+    } catch (error) {
     }
 }
 }
 
-const editarProducto = producto =>({
-    type: COMENZAR_EDICION_PRODUCTO,
+const editarProducto = () =>({
+    type: COMENZAR_EDICION_PRODUCTO
+});
+
+const editarProductoExito = (producto) =>({
+    type:PRODUCTO_EDITADO_EXITO,
     payload:producto
 })

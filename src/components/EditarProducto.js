@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {editarProductoAction} from "../actions/productoActions";
+import {useHistory} from 'react-router-dom';
 
 const EditarProducto = () => {
+
+    const history = useHistory(); //para redireccionar
+    const dispatch = useDispatch();
 
     //nuevo state de producto que se esta editando
     const [producto, guardarProducto] = useState({
@@ -27,13 +31,17 @@ const EditarProducto = () => {
                 [e.target.name]: e.target.value
             })
     }
-
     const {nombre, precio, id} = producto; //destructuring
 
+
+    //Al enviar el formulario
     const submitEditarProducto = e  =>{
         e.preventDefault();
 
-        editarProductoAction();
+        dispatch(editarProductoAction(producto)); //se pasa el producto a editar al action. En esta parte se recarga la api, pero no se muestra en pantalla aun
+
+        history.push('/'); //redicreccion componente principal
+
     }
 
     return (
